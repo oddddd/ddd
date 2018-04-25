@@ -1,4 +1,4 @@
-package com.example.ddd.ddd;
+package com.example.ddd.demo.ddd;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
