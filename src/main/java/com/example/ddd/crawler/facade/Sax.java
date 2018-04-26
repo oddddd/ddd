@@ -1,11 +1,6 @@
 package com.example.ddd.crawler.facade;
 import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
 import org.xml.sax.helpers.DefaultHandler;
-
-import java.io.FileReader;
 
 /**
  * Sax
@@ -13,21 +8,6 @@ import java.io.FileReader;
  * @date Created in 上午11:58 2018/4/26
  */
 public class Sax extends DefaultHandler {
-
-    public static void main (String args[])
-            throws Exception
-    {
-        XMLReader xr = XMLReaderFactory.createXMLReader();
-        Sax handler = new Sax();
-        xr.setContentHandler(handler);
-        xr.setErrorHandler(handler);
-        // Parse each file provided on the
-        // command line.
-        for (int i = 0; i < args.length; i++) {
-            FileReader r = new FileReader(args[i]);
-            xr.parse(new InputSource(r));
-        }
-    }
 
     public Sax ()
     {
