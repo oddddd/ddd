@@ -1,43 +1,124 @@
 package com.example.ddd.crawler.controller;
-
-import com.example.ddd.crawler.facade.OkHttp;
-import com.example.ddd.crawler.facade.Sax;
+import com.example.ddd.crawler.facade.CrawlerFacade;
+import com.example.ddd.library.OkHttp;
+import com.example.ddd.crawler.model.AllConsultModel;
+import com.example.ddd.ddd.Controller;
+import com.example.ddd.mybatis.mapper.ConsultMapper;
+import com.example.ddd.mybatis.model.ConsultModel;
+import com.example.ddd.mybatis.service.ConsultService;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
-
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/crawler")
-public class CrawlerController {
+public class CrawlerController extends Controller{
+    @Autowired
+    ConsultService consultService;
+    @Autowired
+    CrawlerFacade crawlerFacade;
+    @Autowired
+    ConsultMapper consultMapper;
+
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public String test(String url) throws IOException, SAXException {
-        OkHttp okHttp = new OkHttp();
-        String html = okHttp.getStringByUrl(url);
-//        html = "<?xml version=\"1.0\"?>\n" +
-//                "\n" +
-//                "<poem xmlns=\"http://www.megginson.com/ns/exp/poetry\">\n" +
-//                "<title>Roses are Red</title>\n" +
-//                "<l>Roses are red,</l>\n" +
-//                "<l>Violets are blue;</l>\n" +
-//                "<l>Sugar is sweet,</l>\n" +
-//                "<l>And I love you.</l>\n" +
-//                "</poem>";
-//        StringReader srReader=new StringReader(html);
-//        InputSource source=new InputSource(srReader);
-//        XMLReader xr = XMLReaderFactory.createXMLReader();
-//        Sax handler = new Sax();
-//        xr.setContentHandler(handler);
-//        xr.setErrorHandler(handler);
-//        xr.parse(source);
-        return "";
+        try{
+            OkHttp okHttp = new OkHttp();
+            String html = okHttp.getStringByUrl(url);
+            String[] htmlList = html.split("<div class=\"news_left news_list\">");
+            html = htmlList[1];
+            htmlList = html.split("<div class=\"pagination\">");
+            html = htmlList[0];
+            Document doc = Jsoup.parse(html);
+            Elements trList = doc.getElementsByTag("tr");
+            List<AllConsultModel> modelList = new ArrayList<>();
+            for (Element tr :trList){
+                AllConsultModel model = new AllConsultModel();
+                try{
+                    model.setUrl("http://www.159cai.com"+tr.child(1).child(0).attr("href"));
+                    ConsultModel hasUrl = consultService.selectConsultByUrl(model.getUrl());
+                    if(hasUrl != null)
+                        continue;
+                    model.setConsultName(tr.child(1).child(0).html());
+                    model.setCreateTime(tr.child(2).ownText());
+
+                }catch (Exception e){
+                    continue;
+                }
+                modelList.add(model);
+            }
+            for(AllConsultModel consult : modelList){
+                try{
+                    html = okHttp.getStringByUrl(consult.getUrl());
+                    htmlList = html.split("<div class=\"news_left\" id=\"left\">");
+                    html = htmlList[1];
+                    htmlList = html.split("<p  class=\"pbtp\">");
+                    html = htmlList[0];
+                    doc = Jsoup.parse(html);
+                    Elements pList = doc.getElementsByTag("p");
+                    String consultDetail = "";
+                    ConsultModel insert = new ConsultModel();
+                    for(Element p :pList){
+                        if(p.getElementsByTag("img").size() > 0){
+                            p.getElementsByTag("img").eq(0).attr("src");
+                            consultDetail += "<p><img src=\"" + "http://www.159cai.com" + p.getElementsByTag("img").eq(0).attr("src") + "\"></p>";
+                            if(insert.getConsultImg() == null)
+                                insert.setConsultImg("http://www.159cai.com" + p.getElementsByTag("img").eq(0).attr("src"));
+                        }
+                        else
+                            consultDetail += "<p>" + p.html() + "</p>";
+                    }
+                    try{
+                        consult.setAuthorName(doc.child(1).child(0).html());
+                        Integer authorId = crawlerFacade.addAuthorByAuthorName(consult.getAuthorName());
+                        if(authorId != null)
+                            insert.setAuthorId(authorId);
+                    }catch (Throwable e){
+                        System.out.println(e);
+                    }
+                    insert.setHasExamine(0);
+                    insert.setUrl(consult.getUrl());
+                    insert.setConsultName(consult.getConsultName());
+                    insert.setCreateTime(consult.getCreateTime());
+                    insert.setUrlName("159彩票");
+                    consultMapper.insert(insert);
+                    return consultDetail;
+                }catch (Exception e){
+                    continue;
+                }
+            }
+            return null;
+
+        }catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
     }
+
+//    @RequestMapping(value = "/sql",method = RequestMethod.GET)
+//    public Integer sql(){
+//        try{
+//            ConsultModel select = new ConsultModel();
+//            select.setUrl("https://news.zhibo8.cc/zuqiu/2018-04-26/5ae0cf3ce8cb1.htm");
+//            ConsultModel data  = consultMapper.selectOne(select);
+//            if(data != null)
+//                return 1;
+////            if(data == null)
+////                return 2;
+//            return 0;
+//        }catch (Exception e){
+//            System.out.println(e);
+//            return null;
+//        }
+//    }
 }
 
