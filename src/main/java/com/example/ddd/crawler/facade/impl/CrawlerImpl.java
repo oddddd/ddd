@@ -28,7 +28,6 @@ public class CrawlerImpl implements CrawlerFacade{
                 return hasAuthor.getId();
             ConsultAuthorModel insert = new ConsultAuthorModel();
             insert.setConsultAuthorName(name);
-            insert.setUpdateTime("2018-5-4 11:46:10");
             consultAuthorMapper.insertSelective(insert);
             return insert.getId();
         }catch (Exception e){

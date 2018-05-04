@@ -91,16 +91,15 @@ public class CrawlerController extends Controller{
                     insert.setConsultName(consult.getConsultName());
                     insert.setCreateTime(consult.getCreateTime());
                     insert.setUrlName("159彩票");
-                    consultMapper.insert(insert);
-                    return null;
+                    consultMapper.insertSelective(insert);
                 }catch (Exception e){
                     continue;
                 }
             }
-            return null;
+            return "ok";
         }catch (Exception e){
             System.out.println(e);
-            return null;
+            return "error";
         }
     }
 }
