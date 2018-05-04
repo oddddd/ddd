@@ -1,5 +1,7 @@
 package com.example.ddd.crawler.controller;
 import com.example.ddd.crawler.facade.CrawlerFacade;
+import com.example.ddd.crawler.facade.WashArticleFacade;
+import com.example.ddd.library.FileTxtUtil;
 import com.example.ddd.library.OkHttp;
 import com.example.ddd.crawler.model.AllConsultModel;
 import com.example.ddd.ddd.Controller;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +32,10 @@ public class CrawlerController extends Controller{
     CrawlerFacade crawlerFacade;
     @Autowired
     ConsultMapper consultMapper;
+    @Autowired
+    WashArticleFacade washArticleFacade;
 
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @RequestMapping(value = "/159Cai",method = RequestMethod.GET)
     public String test(String url) throws IOException, SAXException {
         try{
             OkHttp okHttp = new OkHttp();
@@ -85,7 +91,7 @@ public class CrawlerController extends Controller{
                     }catch (Throwable e){
                         System.out.println(e);
                     }
-                    insert.setConsultDetail(consultDetail);
+                    insert.setConsultDetail(washArticleFacade.WashArticleText(consultDetail));
                     insert.setHasExamine(0);
                     insert.setUrl(consult.getUrl());
                     insert.setConsultName(consult.getConsultName());
@@ -101,6 +107,11 @@ public class CrawlerController extends Controller{
             System.out.println(e);
             return "error";
         }
+    }
+
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public String testTwo(String text) throws IOException, SAXException {
+        return washArticleFacade.WashArticleText(text);
     }
 }
 
