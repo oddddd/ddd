@@ -10,6 +10,7 @@ import tk.mybatis.mapper.provider.base.BaseInsertProvider;
 public interface MyMapper<T> extends Mapper<T>,MySqlMapper<T> {
     @Options(useGeneratedKeys = true,keyProperty = "id")
     @InsertProvider(type = BaseInsertProvider.class,method = "dynamicSQL")
-    int insertSeletTive(T record);
+    int insertSelective(T record);
+
 }
 

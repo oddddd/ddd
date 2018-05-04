@@ -78,47 +78,30 @@ public class CrawlerController extends Controller{
                             consultDetail += "<p>" + p.html() + "</p>";
                     }
                     try{
-                        consult.setAuthorName(doc.child(1).child(0).html());
+                        consult.setAuthorName(doc.getElementsByTag("a").eq(0).html());
                         Integer authorId = crawlerFacade.addAuthorByAuthorName(consult.getAuthorName());
                         if(authorId != null)
                             insert.setAuthorId(authorId);
                     }catch (Throwable e){
                         System.out.println(e);
                     }
+                    insert.setConsultDetail(consultDetail);
                     insert.setHasExamine(0);
                     insert.setUrl(consult.getUrl());
                     insert.setConsultName(consult.getConsultName());
                     insert.setCreateTime(consult.getCreateTime());
                     insert.setUrlName("159彩票");
                     consultMapper.insert(insert);
-                    return consultDetail;
+                    return null;
                 }catch (Exception e){
                     continue;
                 }
             }
             return null;
-
         }catch (Exception e){
             System.out.println(e);
             return null;
         }
     }
-
-//    @RequestMapping(value = "/sql",method = RequestMethod.GET)
-//    public Integer sql(){
-//        try{
-//            ConsultModel select = new ConsultModel();
-//            select.setUrl("https://news.zhibo8.cc/zuqiu/2018-04-26/5ae0cf3ce8cb1.htm");
-//            ConsultModel data  = consultMapper.selectOne(select);
-//            if(data != null)
-//                return 1;
-////            if(data == null)
-////                return 2;
-//            return 0;
-//        }catch (Exception e){
-//            System.out.println(e);
-//            return null;
-//        }
-//    }
 }
 

@@ -5,6 +5,7 @@ import com.example.ddd.mybatis.mapper.ConsultAuthorMapper;
 import com.example.ddd.mybatis.model.ConsultAuthorModel;
 import com.example.ddd.mybatis.service.ConsultService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * CrawlerImpl
@@ -13,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @desc
  * @date Created in 下午6:15 2018/5/3
  */
+@Service
 public class CrawlerImpl implements CrawlerFacade{
     @Autowired
     ConsultAuthorMapper consultAuthorMapper;
     @Autowired
     ConsultService consultService;
-
     @Override
     public Integer addAuthorByAuthorName(String name) {
         try{
@@ -26,10 +27,12 @@ public class CrawlerImpl implements CrawlerFacade{
             if(hasAuthor != null)
                 return hasAuthor.getId();
             ConsultAuthorModel insert = new ConsultAuthorModel();
-            insert.setUpdateTime(name);
-            Integer id = consultAuthorMapper.insertSeletTive(insert);
-            return id;
+            insert.setConsultAuthorName(name);
+            insert.setUpdateTime("2018-5-4 11:46:10");
+            consultAuthorMapper.insertSelective(insert);
+            return insert.getId();
         }catch (Exception e){
+            System.out.println(e);
             return null;
         }
 
