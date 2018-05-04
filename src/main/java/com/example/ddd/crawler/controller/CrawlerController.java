@@ -36,7 +36,7 @@ public class CrawlerController extends Controller{
     WashArticleFacade washArticleFacade;
 
     @RequestMapping(value = "/159Cai",method = RequestMethod.GET)
-    public String test(String url) throws IOException, SAXException {
+    public String crawler159Cai(String url) throws IOException, SAXException {
         try{
             OkHttp okHttp = new OkHttp();
             String html = okHttp.getStringByUrl(url);
@@ -109,8 +109,8 @@ public class CrawlerController extends Controller{
         }
     }
 
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
-    public String testTwo(String text) throws IOException, SAXException {
+    @RequestMapping(value = "/washArticle",method = RequestMethod.GET)
+    public String washArticle(String text) throws IOException, SAXException {
         return washArticleFacade.WashArticleText(text);
     }
 }
