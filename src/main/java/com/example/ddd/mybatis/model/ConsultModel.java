@@ -3,6 +3,7 @@ package com.example.ddd.mybatis.model;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * ConsultModel
@@ -12,7 +13,7 @@ import javax.persistence.Table;
  * @date Created in 下午3:07 2018/5/3
  */
 @Table(name="we_consult")
-public class ConsultModel {
+public class ConsultModel implements Serializable {
     @Id
     private Integer id;
     @Column(name = "consultName")

@@ -5,5 +5,6 @@ import com.example.ddd.mybatis.model.ConsultModel;
 
 public interface ConsultService {
     ConsultModel selectConsultByUrl(String url);
+    ConsultModel selectConsultById(Integer id);
     ConsultAuthorModel selectAuthorByName(String name);
 }

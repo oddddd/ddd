@@ -32,6 +32,11 @@ public class ConsultImpl implements ConsultService{
     }
 
     @Override
+    public ConsultModel selectConsultById(Integer id) {
+        return consultMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public ConsultAuthorModel selectAuthorByName(String name) {
         ConsultAuthorModel select = new ConsultAuthorModel();
         select.setConsultAuthorName(name);
