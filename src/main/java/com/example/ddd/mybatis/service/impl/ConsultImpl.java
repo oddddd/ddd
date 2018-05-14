@@ -1,14 +1,17 @@
 package com.example.ddd.mybatis.service.impl;
 
 import com.example.ddd.mybatis.mapper.ConsultAuthorMapper;
+import com.example.ddd.mybatis.mapper.ConsultClassMapper;
 import com.example.ddd.mybatis.mapper.ConsultMapper;
 import com.example.ddd.mybatis.model.ConsultAuthorModel;
+import com.example.ddd.mybatis.model.ConsultClassModel;
 import com.example.ddd.mybatis.model.ConsultModel;
 import com.example.ddd.mybatis.service.ConsultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * ConsultImpl
@@ -23,6 +26,8 @@ public class ConsultImpl implements ConsultService{
     ConsultMapper consultMapper;
     @Autowired
     ConsultAuthorMapper consultAuthorMapper;
+    @Autowired
+    ConsultClassMapper consultClassMapper;
 
     @Override
     public ConsultModel selectConsultByUrl(String url) {
@@ -37,9 +42,16 @@ public class ConsultImpl implements ConsultService{
     }
 
     @Override
-    public ConsultAuthorModel selectAuthorByName(String name) {
+    public List<ConsultAuthorModel> selectAuthorByName(String name) {
         ConsultAuthorModel select = new ConsultAuthorModel();
         select.setConsultAuthorName(name);
-        return consultAuthorMapper.selectOne(select);
+        return consultAuthorMapper.select(select);
+    }
+
+    @Override
+    public List<ConsultClassModel> selectClassByName(String name) {
+        ConsultClassModel select = new ConsultClassModel();
+        select.setConsultClassName(name);
+        return consultClassMapper.select(select);
     }
 }

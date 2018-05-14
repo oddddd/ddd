@@ -35,17 +35,16 @@ public class CrawlerController extends Controller{
     WashArticleFacade washArticleFacade;
     @Autowired
     RedisDao redisDao;
+
     /**
      * 159彩票网站咨询爬取
      * @param url
      * @return
-     * @throws IOException
-     * @throws SAXException
      */
     @RequestMapping(value = "/159Cai",method = RequestMethod.GET)
-    public String crawler159Cai(String url) throws IOException, SAXException {
+    public String crawler159Cai(String url) {
         try{
-            OkHttp okHttp = new OkHttp();
+             OkHttp okHttp = new OkHttp();
             String html = okHttp.getStringByUrl(url);
             String[] htmlList = html.split("<div class=\"news_left news_list\">");
             html = htmlList[1];
@@ -119,24 +118,118 @@ public class CrawlerController extends Controller{
     }
 
     /**
+     * 直播吧数据爬取
+     * @param url
+     * @return
+     */
+    @RequestMapping(value = "/ZhiBo8",method = RequestMethod.GET)
+    public String crawlerZhiBo8(String url) {
+        try{
+            //https://news.zhibo8.cc/zuqiu/more.htm
+            //https://news.zhibo8.cc/nba/more.htm
+            OkHttp okHttp = new OkHttp();
+            String html = okHttp.getStringByUrl(url);
+            String[] htmlList = html.split("<div class=\"dataList\">");
+            html = htmlList[1];
+            htmlList = html.split("<ul class=\"articleList\">");
+            html = htmlList[1];
+            html = html.replace("</ul>","");
+            Document doc = Jsoup.parse(html);
+            Elements liList = doc.getElementsByTag("li");
+            List<AllConsultModel> modelList = new ArrayList<>();
+            for (Element li :liList){
+                AllConsultModel model = new AllConsultModel();
+                try{
+                    model.setUrl("https:"+li.getElementsByTag("a").eq(0).attr("href"));
+                    ConsultModel hasUrl = consultService.selectConsultByUrl(model.getUrl());
+                    if(hasUrl != null)
+                        continue;
+                    model.setConsultName(li.getElementsByTag("a").eq(0).html());
+                    model.setCreateTime(li.child(2).html());
+                    String className = li.attr("data-label");
+                    String[] chassNameList = className.split(",");
+                    className = chassNameList[2];
+                    model.setClassName(className);
+                    Integer classId = crawlerFacade.addClassByClassName(className);
+                    if(classId != null)
+                        model.setClassId(classId);
+                    model.setAuthorName(li.child(1).html());
+                    Integer authorId = crawlerFacade.addAuthorByAuthorName(model.getAuthorName());
+                    if(authorId != null)
+                        model.setAuthorId(authorId);
+                }catch (Exception e){
+                    continue;
+                }
+                modelList.add(model);
+            }
+            for (AllConsultModel consult : modelList){
+                try {
+                    html = okHttp.getStringByUrl(consult.getUrl());
+                    doc = Jsoup.parse(html);
+                    Elements dom = doc.getElementsByClass("content");
+                    if(dom.size() == 0)
+                        continue;
+                    Elements pList = dom.get(0).getElementsByTag("p");
+                    String consultDetail = "";
+                    ConsultModel insert = new ConsultModel();
+                    for( Element p : pList ){
+                        if(p.getElementsByTag("img").size()>0){
+                            String imgUrl = p.getElementsByTag("img").get(0).attr("src");
+                            imgUrl = "https:"+imgUrl;
+                            consultDetail += "<p><img src='"+imgUrl+"'></p>";
+                            if(insert.getConsultImg() == null)
+                                insert.setConsultImg(imgUrl);
+                            continue;
+                        }
+                        String text = p.html();
+                        consultDetail += "<p>"+text+"</p>";
+                    }
+                    insert.setClassId(consult.getClassId());
+                    insert.setHasExamine(0);
+                    insert.setConsultName(consult.getConsultName());
+                    insert.setUrl(consult.getUrl());
+                    insert.setAuthorId(consult.getAuthorId());
+                    insert.setUrlName("直播吧");
+                    insert.setConsultDetail(consultDetail);
+                    consultMapper.insertSelective(insert);
+                }catch (Exception e){
+                    System.out.println(e);
+                    continue;
+                }
+            }
+            return "ok";
+//            return null;
+        }catch (Exception e){
+            System.out.println(e);
+            return "error";
+//            return null;
+        }
+    }
+
+    /**
      * 简单洗文
      * @param text
      * @return
      * @throws IOException
      * @throws SAXException
      */
-    @RequestMapping(value = "/washArticle",method = RequestMethod.GET)
+    @RequestMapping(value = "/washArticle",method = RequestMethod.POST)
     public String washArticle(String text) throws IOException, SAXException {
         return washArticleFacade.WashArticleText(text);
     }
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
-    public Object test(String text) throws IOException, SAXException {
+    public Object test(String text){
         try{
-            ConsultModel setModel = consultService.selectConsultById(762);
-            redisDao.setObjectKeyValueTime("model",setModel,60);
-            Object getModel = redisDao.getObjectKeyValue("model");
-            return  getModel;
+            System.out.println("crawlerOne定时任务启动");
+            CrawlerController crawlerController = new CrawlerController();
+            String log1 = crawlerController.crawler159Cai("http://www.159cai.com/zc/yuce/");
+            System.out.println(log1);
+//            String log2 = crawlerController.crawler159Cai("http://www.159cai.com/jczq/yuce/");
+//            System.out.println(log2);
+//            String log3 = crawlerController.crawler159Cai("http://www.159cai.com/jclq/yuce/");
+//            System.out.println(log3);
+            System.out.println("crawlerOne定时任务结束");
         }catch (Exception e){
             System.out.println(e);
         }
