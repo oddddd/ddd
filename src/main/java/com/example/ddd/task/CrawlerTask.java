@@ -31,6 +31,8 @@ public class CrawlerTask {
         System.out.println(log4);
         String log5 = crawlerController.crawlerZhiBo8("https://news.zhibo8.cc/nba/more.htm");
         System.out.println(log5);
+        String log6 = crawlerController.crawler9to5("http://www.9to5.me/");
+        System.out.println(log6);
         System.out.println("crawlerOne定时任务结束");
     }
 }

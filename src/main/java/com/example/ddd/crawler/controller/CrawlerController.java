@@ -1,13 +1,17 @@
 package com.example.ddd.crawler.controller;
 import com.example.ddd.crawler.facade.CrawlerFacade;
 import com.example.ddd.crawler.facade.WashArticleFacade;
+import com.example.ddd.crawler.model.AllLiveModel;
+import com.example.ddd.crawler.model.AllMatchModel;
 import com.example.ddd.library.OkHttp;
 import com.example.ddd.crawler.model.AllConsultModel;
 import com.example.ddd.ddd.Controller;
 import com.example.ddd.library.RedisDao;
 import com.example.ddd.mybatis.mapper.ConsultMapper;
 import com.example.ddd.mybatis.model.ConsultModel;
+import com.example.ddd.mybatis.model.LiveStreamBindModel;
 import com.example.ddd.mybatis.service.ConsultService;
+import com.example.ddd.mybatis.service.MatchService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -35,6 +39,8 @@ public class CrawlerController extends Controller{
     WashArticleFacade washArticleFacade;
     @Autowired
     RedisDao redisDao;
+    @Autowired
+    MatchService matchService;
 
     /**
      * 159彩票网站咨询爬取
@@ -44,7 +50,7 @@ public class CrawlerController extends Controller{
     @RequestMapping(value = "/159Cai",method = RequestMethod.GET)
     public String crawler159Cai(String url) {
         try{
-             OkHttp okHttp = new OkHttp();
+            OkHttp okHttp = new OkHttp();
             String html = okHttp.getStringByUrl(url);
             String[] htmlList = html.split("<div class=\"news_left news_list\">");
             html = htmlList[1];
@@ -198,11 +204,89 @@ public class CrawlerController extends Controller{
                 }
             }
             return "ok";
-//            return null;
         }catch (Exception e){
             System.out.println(e);
             return "error";
-//            return null;
+        }
+    }
+
+    /**
+     * 无插件直播网数据爬取
+     * @param url
+     * @return
+     */
+    @RequestMapping(value = "/9to5",method = RequestMethod.GET)
+    public String crawler9to5(String url){
+        try{
+            OkHttp okHttp = new OkHttp();
+            String html = okHttp.getStringByUrl(url);
+            String[] htmlList = html.split("<tbody>");
+            html = htmlList[1];
+            htmlList = html.split("</tbody>");
+            html = htmlList[0];
+            html = "<table>"+html+"</table>";
+            Document doc = Jsoup.parse(html);
+            Elements trList = doc.getElementsByClass("against");
+            List<AllMatchModel> modelList = new ArrayList<>();
+            for(Element tr :trList){
+                try{
+                    AllMatchModel newMatchModel = new AllMatchModel();
+                    tr.getElementsByTag("td").eq(4).attr("title");
+                    newMatchModel.setLeagueName(tr.getElementsByTag("td").eq(0).attr("title"));
+                    if(tr.getElementsByTag("td").eq(4).hasClass("teama")){
+                        try{
+                            newMatchModel.setHomeName(tr.getElementsByTag("td").eq(4).first().getElementsByTag("strong").html());
+                            newMatchModel.setAwayName(tr.getElementsByTag("td").eq(6).first().getElementsByTag("strong").html());
+                        }catch (Exception e){
+                            newMatchModel.setHomeName(tr.getElementsByTag("td").eq(4).html());
+                            newMatchModel.setAwayName(tr.getElementsByTag("td").eq(6).html());
+                        }
+                        newMatchModel.setKickoffTime(tr.getElementsByTag("td").eq(9).attr("t"));
+                    }else{
+                        newMatchModel.setMatchName(tr.getElementsByTag("td").eq(4).html());
+                        newMatchModel.setKickoffTime(tr.getElementsByTag("td").eq(7).attr("t"));
+
+                    }
+                    List<AllLiveModel> liveList = new ArrayList<>();
+                    for( Element a : tr.getElementsByClass("live_link").first().getElementsByTag("a")){
+                        try{
+                            String otherUrl = a.attr("href");
+                            if(otherUrl.contains("../")){
+                                otherUrl = a.attr("href").replace("../","http://www.9to5.me/");
+                            }else if(otherUrl.subSequence(0,1).equals("/")){
+                                otherUrl = "http://www.9to5.me"+a.attr("href");
+                            }else if(otherUrl.subSequence(0,1).equals("h")){
+                                otherUrl = a.attr("href");
+                            }else{
+                                continue;
+                            }
+                            String liveHtml = okHttp.getStringByUrl(otherUrl);
+                            Document liveDoc = Jsoup.parse(liveHtml);
+                            AllLiveModel live = new AllLiveModel();
+                            try{
+                                String liveUrl = liveDoc.getElementsByTag("iframe").first().attr("src");
+                                live.setLiveUrl(liveUrl);
+                            }catch (Exception e){
+                                continue;
+                            }
+                            live.setType(2);
+                            live.setUrl(otherUrl);
+                            live.setLiveName(a.html());
+                            liveList.add(live);
+                            newMatchModel.setLiveList(liveList);
+                        }catch (Exception e){
+                            continue;
+                        }
+                    }
+                    modelList.add(newMatchModel);
+                }catch (Exception e){
+                    continue;
+                }
+            }
+            crawlerFacade.matchBindLiveStreamList(modelList);
+            return "ok";
+        }catch (Exception e){
+            return "error";
         }
     }
 

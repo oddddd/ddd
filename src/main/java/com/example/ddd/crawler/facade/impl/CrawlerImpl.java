@@ -1,14 +1,20 @@
 package com.example.ddd.crawler.facade.impl;
 
 import com.example.ddd.crawler.facade.CrawlerFacade;
+import com.example.ddd.crawler.model.AllLiveModel;
+import com.example.ddd.crawler.model.AllMatchModel;
 import com.example.ddd.mybatis.mapper.ConsultAuthorMapper;
 import com.example.ddd.mybatis.mapper.ConsultClassMapper;
 import com.example.ddd.mybatis.model.ConsultAuthorModel;
 import com.example.ddd.mybatis.model.ConsultClassModel;
+import com.example.ddd.mybatis.model.LiveStreamBindModel;
+import com.example.ddd.mybatis.model.MatchModel;
 import com.example.ddd.mybatis.service.ConsultService;
+import com.example.ddd.mybatis.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +32,8 @@ public class CrawlerImpl implements CrawlerFacade{
     ConsultClassMapper consultClassMapper;
     @Autowired
     ConsultService consultService;
+    @Autowired
+    MatchService matchService;
     @Override
     public Integer addAuthorByAuthorName(String name) {
         try{
@@ -59,5 +67,76 @@ public class CrawlerImpl implements CrawlerFacade{
             return null;
         }
 
+    }
+
+    @Override
+    public Integer selectMatchIdByHomeNameAwayNameKickoffTime(String homeName, String awayName, String kickoffTime) {
+        if(kickoffTime.length()==16){
+            kickoffTime = kickoffTime+":00";
+        }
+        List<MatchModel> matchList = matchService.selectMatchByKickoffTime(kickoffTime);
+        Integer matchId = null;
+        for(MatchModel match : matchList){
+            try{
+                if(match.getAwayName().equals(homeName)||match.getAwayName().equals(awayName)){
+                    matchId = match.getId();
+                    break;
+                }
+                if(match.getHomeName().equals(homeName)||match.getHomeName().equals(awayName)){
+                    matchId = match.getId();
+                    break;
+                }
+                if(match.getHomeName().contains(homeName)||match.getHomeName().contains(awayName)){
+                    matchId = match.getId();
+                    break;
+                }
+                if(match.getAwayName().contains(homeName)||match.getAwayName().contains(awayName)){
+                    matchId = match.getId();
+                    break;
+                }
+                if(homeName.contains(match.getHomeName())||homeName.contains(match.getAwayName())){
+                    matchId = match.getId();
+                    break;
+                }
+                if(awayName.contains(match.getHomeName())||awayName.contains(match.getAwayName())){
+                    matchId = match.getId();
+                    break;
+                }
+            }catch (Exception e){
+                continue;
+            }
+        }
+        return matchId;
+    }
+
+    @Override
+    public List<Integer> matchBindLiveStreamList(List<AllMatchModel> list) {
+        List<Integer> idList = new ArrayList<>();
+        for(AllMatchModel model : list){
+            try {
+                if (model.getHomeName() != null && model.getAwayName() != null) {
+                    Integer matchId = selectMatchIdByHomeNameAwayNameKickoffTime(model.getHomeName(), model.getAwayName(), model.getKickoffTime());
+                    if (matchId == null) {
+                        continue;
+                    }
+                    for (AllLiveModel liveModel : model.getLiveList()) {
+                        try {
+                            LiveStreamBindModel liveStreamBindModel = new LiveStreamBindModel();
+                            liveStreamBindModel.setLiveUrl(liveModel.getLiveUrl());
+                            liveStreamBindModel.setFid(matchId.toString());
+                            liveStreamBindModel.setLiveName(liveModel.getLiveName());
+                            liveStreamBindModel.setType(liveModel.getType());
+                            Integer bindId = matchService.insertLiveStreamBind(liveStreamBindModel);
+                            idList.add(bindId);
+                        }catch (Exception e){
+                            continue;
+                        }
+                    }
+                }
+            }catch (Exception e){
+                continue;
+            }
+        }
+        return idList;
     }
 }
