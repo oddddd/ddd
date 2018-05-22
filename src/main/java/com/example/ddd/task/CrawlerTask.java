@@ -1,10 +1,13 @@
 package com.example.ddd.task;
 
 import com.example.ddd.crawler.controller.CrawlerController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+
 
 /**
  * CrawlerTask
@@ -16,23 +19,26 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 @EnableScheduling
 public class CrawlerTask {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     CrawlerController crawlerController;
     @Scheduled(cron = "0 0/10 * * * ?") // 每10分钟执行一次
     public void crawlerOne() {
-        System.out.println("crawlerOne定时任务启动");
+        logger.info("crawlerOne - start");
         String log1 = crawlerController.crawler159Cai("http://www.159cai.com/zc/yuce/");
-        System.out.println(log1);
+        logger.info("crawlerOne - log1"+log1);
         String log2 = crawlerController.crawler159Cai("http://www.159cai.com/jczq/yuce/");
-        System.out.println(log2);
+        logger.info("crawlerOne - log2"+log2);
         String log3 = crawlerController.crawler159Cai("http://www.159cai.com/jclq/yuce/");
-        System.out.println(log3);
+        logger.info("crawlerOne - log3"+log3);
         String log4 = crawlerController.crawlerZhiBo8("https://news.zhibo8.cc/zuqiu/more.htm");
-        System.out.println(log4);
+        logger.info("crawlerOne - log4"+log4);
         String log5 = crawlerController.crawlerZhiBo8("https://news.zhibo8.cc/nba/more.htm");
-        System.out.println(log5);
+        logger.info("crawlerOne - log5"+log5);
         String log6 = crawlerController.crawler9to5("http://www.9to5.me/");
-        System.out.println(log6);
-        System.out.println("crawlerOne定时任务结束");
+        logger.info("crawlerOne - log6"+log6);
+        logger.info("crawlerOne - end");
     }
 }

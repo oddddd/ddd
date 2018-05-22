@@ -181,7 +181,9 @@ public class CrawlerController extends Controller{
                     for( Element p : pList ){
                         if(p.getElementsByTag("img").size()>0){
                             String imgUrl = p.getElementsByTag("img").get(0).attr("src");
-                            imgUrl = "https:"+imgUrl;
+                            if(!imgUrl.contains("https")){
+                                imgUrl = "https:"+imgUrl;
+                            }
                             consultDetail += "<p><img src='"+imgUrl+"'></p>";
                             if(insert.getConsultImg() == null)
                                 insert.setConsultImg(imgUrl);

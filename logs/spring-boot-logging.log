@@ -1,0 +1,5 @@
+2018/05/22-00:03 [pool-1-thread-1] INFO  com.example.ddd.task.CrawlerTask$$EnhancerBySpringCGLIB$$54cca0c3- crawlerOne - start
+2018/05/22-00:04 [pool-1-thread-1] INFO  com.example.ddd.task.CrawlerTask$$EnhancerBySpringCGLIB$$54cca0c3- crawlerOne - log1ok
+2018/05/22-00:04 [pool-1-thread-1] INFO  com.example.ddd.task.CrawlerTask$$EnhancerBySpringCGLIB$$54cca0c3- crawlerOne - log2ok
+2018/05/22-00:04 [pool-1-thread-1] INFO  com.example.ddd.task.CrawlerTask$$EnhancerBySpringCGLIB$$54cca0c3- crawlerOne - log3ok
+2018/05/22-00:04 [pool-1-thread-1] INFO  com.example.ddd.task.CrawlerTask$$EnhancerBySpringCGLIB$$54cca0c3- crawlerOne - log4ok
