@@ -1,5 +1,8 @@
 package com.example.ddd.netty.handler;
 
+import com.example.ddd.netty.handler.facade.PackFacade;
+import com.example.ddd.netty.handler.facade.ReadFacade;
+import com.example.ddd.netty.handler.model.DataModel;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
@@ -8,8 +11,11 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.CharsetUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,11 +26,15 @@ import java.util.concurrent.ConcurrentHashMap;
  * @desc
  * @date Created in 下午5:53 2018/5/21
  */
+@Component
 public class ServerHandler extends ChannelInboundHandlerAdapter {
     private Map<String,ChannelHandlerContext> channelList  = new ConcurrentHashMap<String,ChannelHandlerContext>();
 
-    //心跳要用的东西不知道干啥的
-    private static final ByteBuf HEARTBEAT_SEQUENCE = Unpooled.unreleasableBuffer(Unpooled.copiedBuffer("Heartbeat",CharsetUtil.UTF_8));// 1
+    @Autowired
+    PackFacade packFacade;
+
+    @Autowired
+    ReadFacade readFacade;
 
     // 这个好像是捕获收到消息
     @Override
@@ -32,14 +42,13 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         String ctxId = ctx.channel().id().asLongText();
         channelList.put(ctxId,ctx);
         ByteBuf buf = (ByteBuf)msg;
-        byte[] data = new byte[buf.readableBytes()];
-        buf.readBytes(data);
-        System.out.print(buf.toString(CharsetUtil.UTF_8));
-        String request = new String(data, "utf-8");
-        System.out.println("Server: " + request);
-        //写给客户端
-        String response = "我是反馈的信息";
-        ctx.writeAndFlush(Unpooled.copiedBuffer(response.getBytes()));
+        String str = buf.toString(CharsetUtil.UTF_8);
+        List<DataModel> modelList = packFacade.parseData(str);
+        for(DataModel model : modelList){
+            if(packFacade.verifySign(model)){
+                readFacade.protocolHandler(ctx,model);
+            }
+        }
     }
 
     // 好像是捕获断开连接的
@@ -59,18 +68,18 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent) { // 2
-            IdleStateEvent event = (IdleStateEvent) evt;
-            String type = "";
-            if (event.state() == IdleState.READER_IDLE) {
-                type = "read idle";
-            } else if (event.state() == IdleState.WRITER_IDLE) {
-                type = "write idle";
-            } else if (event.state() == IdleState.ALL_IDLE) {
-                type = "all idle";
-            }
-            ctx.writeAndFlush(HEARTBEAT_SEQUENCE.duplicate()).addListener(
-                    ChannelFutureListener.CLOSE_ON_FAILURE); // 3
-            System.out.println( ctx.channel().remoteAddress()+"超时类型：" + type);
+//            IdleStateEvent event = (IdleStateEvent) evt;
+//            String type = "";
+//            if (event.state() == IdleState.READER_IDLE) {
+//                type = "read idle";
+//            } else if (event.state() == IdleState.WRITER_IDLE) {
+//                type = "write idle";
+//            } else if (event.state() == IdleState.ALL_IDLE) {
+//                type = "all idle";
+//            }
+//            ctx.writeAndFlush(HEARTBEAT_SEQUENCE.duplicate()).addListener(
+//                    ChannelFutureListener.CLOSE_ON_FAILURE); // 3
+//            System.out.println( ctx.channel().remoteAddress()+"超时类型：" + type);
         } else {
             super.userEventTriggered(ctx, evt);
         }

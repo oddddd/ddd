@@ -262,15 +262,16 @@ public class CrawlerController extends Controller{
                             }else{
                                 continue;
                             }
-                            String liveHtml = okHttp.getStringByUrl(otherUrl);
-                            Document liveDoc = Jsoup.parse(liveHtml);
                             AllLiveModel live = new AllLiveModel();
-                            try{
-                                String liveUrl = liveDoc.getElementsByTag("iframe").first().attr("src");
-                                live.setLiveUrl(liveUrl);
-                            }catch (Exception e){
-                                continue;
-                            }
+//                            String liveHtml = okHttp.getStringByUrl(otherUrl);
+//                            Document liveDoc = Jsoup.parse(liveHtml);
+//                            try{
+//                                String liveUrl = liveDoc.getElementsByTag("iframe").first().attr("src");
+//                                live.setLiveUrl(liveUrl);
+//                            }catch (Exception e){
+//                                continue;
+//                            }
+                            live.setLiveUrl(otherUrl);
                             live.setType(2);
                             live.setUrl(otherUrl);
                             live.setLiveName(a.html());

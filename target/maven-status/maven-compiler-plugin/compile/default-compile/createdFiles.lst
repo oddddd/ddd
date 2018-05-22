@@ -1,5 +1,6 @@
 com/example/ddd/crawler/facade/CrawlerFacade.class
 com/example/ddd/mybatis/service/impl/MoneyImpl.class
+com/example/ddd/DddNettyTcpApplication.class
 com/example/ddd/task/CrawlerTask.class
 com/example/ddd/crawler/facade/impl/WashArticleImpl.class
 com/example/ddd/library/ThreadPoolManager.class
@@ -30,6 +31,7 @@ com/example/ddd/mybatis/mapper/ConsultClassMapper.class
 com/example/ddd/mybatis/model/MatchModel.class
 com/example/ddd/mybatis/MyMapper.class
 com/example/ddd/library/RedisDao.class
+com/example/ddd/DddNettyTcpApplication$1.class
 com/example/ddd/mybatis/model/LiveStreamBindModel.class
 com/example/ddd/mybatis/mapper/UserMapper.class
 com/example/ddd/mybatis/mapper/ConsultAuthorMapper.class
