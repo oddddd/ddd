@@ -46,7 +46,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         List<DataModel> modelList = packFacade.parseData(str);
         for(DataModel model : modelList){
             if(packFacade.verifySign(model)){
-                readFacade.protocolHandler(ctx,model);
+                readFacade.protocolHandler(ctx,ctxId,model);
             }
         }
     }

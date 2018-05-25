@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -282,6 +284,73 @@ public class CrawlerController extends Controller{
                         }
                     }
                     modelList.add(newMatchModel);
+                }catch (Exception e){
+                    continue;
+                }
+            }
+            crawlerFacade.matchBindLiveStreamList(modelList);
+            return "ok";
+        }catch (Exception e){
+            return "error";
+        }
+    }
+
+    @RequestMapping(value = "/TTZhiBo",method = RequestMethod.GET)
+    public String crawlerTTZhiBo(String url){
+        try{
+            OkHttp okHttp = new OkHttp();
+            String html = okHttp.getStringByUrl(url);
+            Document doc = Jsoup.parse(html);
+            Elements dateList = doc.getElementsByClass("datelist");
+            List<AllMatchModel> modelList = new ArrayList<>();
+            for(Element date : dateList){
+                try{
+                    String day = date.getElementsByClass("dateheader").html();
+                    String[] dayList = day.split(" ");
+                    day = dayList[0];
+                    day = day.replace("年","-");
+                    day = day.replace("月","-");
+                    day = day.replace("日","");
+                    Elements ulList = date.getElementsByTag("ul");
+                    for (Element ul : ulList){
+                        try{
+                            AllMatchModel match = new AllMatchModel();
+                            String matchDate = ul.getElementsByTag("li").eq(0).html();
+                            String matchDetail = ul.getElementsByTag("li").get(3).getElementsByTag("a").html();
+                            match.setKickoffTime(day+" "+matchDate+":00");
+                            match.setMatchName(matchDetail);
+                            String[] matchNameList = matchDetail.split("VS");
+                            if(matchNameList.length>1){
+                                match.setHomeName(matchNameList[0].trim());
+                                match.setAwayName(matchNameList[1].trim());
+                            }
+                            Elements aList = ul.getElementsByTag("li").get(4).getElementsByTag("a");
+                            List<AllLiveModel> liveList = new ArrayList<>();
+                            for(Element a : aList){
+                                try{
+                                    AllLiveModel live = new AllLiveModel();
+                                    String liveUrl = a.attr("href");
+                                    if(liveUrl.substring(0,2).equals("//")){
+                                        liveUrl = liveUrl.replace("//","https://");
+                                    }
+                                    if(!liveUrl.contains("http")){
+                                        liveUrl = "http://www.tiantianzhibo.com/"+liveUrl;
+                                    }
+                                    live.setLiveUrl(liveUrl);
+                                    live.setUrl(liveUrl);
+                                    live.setLiveName(a.html());
+                                    live.setType(2);
+                                    liveList.add(live);
+                                }catch (Exception e){
+                                    continue;
+                                }
+                            }
+                            match.setLiveList(liveList);
+                            modelList.add(match);
+                        }catch (Exception e){
+                            continue;
+                        }
+                    }
                 }catch (Exception e){
                     continue;
                 }

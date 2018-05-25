@@ -17,10 +17,12 @@ import java.util.concurrent.TimeUnit;
 public class RedisDao {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<Object, Object> redisTemplate;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
+    private String head = "wev-";
 
     /**
      * 永久存一个key
@@ -28,6 +30,7 @@ public class RedisDao {
      * @param value
      */
     public void setStringKeyValue(String key,String value){
+        key = head  +key;
         ValueOperations<String,String> ops = stringRedisTemplate.opsForValue();
         ops.set(key,value);
     }
@@ -38,6 +41,7 @@ public class RedisDao {
      * @return
      */
     public String getStringKeyValue(String key){
+        key = head  +key;
         ValueOperations<String,String> ops = stringRedisTemplate.opsForValue();
         return ops.get(key);
     }
@@ -51,6 +55,7 @@ public class RedisDao {
      */
     public boolean setStringKeyValueTime(String key, String value, long time){
         try {
+            key = head  +key;
             ValueOperations<String,String> ops = stringRedisTemplate.opsForValue();
             ops.set(key, value);
             if (time > 0) redisTemplate.expire(key, time, TimeUnit.SECONDS);
@@ -67,6 +72,7 @@ public class RedisDao {
      */
     public boolean setObjectKeyValue(String key,Object value){
         try{
+            key = head  +key;
             ValueOperations<Object,Object> ops = redisTemplate.opsForValue();
             byte[] b = ObjectUtil.objectToBytes(value);
             ops.set(key,b.toString());
@@ -81,15 +87,15 @@ public class RedisDao {
      * @param key
      * @return
      */
-    public Object getObjectKeyValue(String key){
+    public <T> T getObjectKeyValue(String key){
         try{
+            key = head + key;
             Object result;
             ValueOperations<Object, Object> operations = redisTemplate.opsForValue();
             result = operations.get(key);
-            return result;
+            return (T) result;
         }catch (Exception e){
-            System.out.println();
-            return false;
+            return null;
         }
     }
 
@@ -102,6 +108,7 @@ public class RedisDao {
      */
     public boolean setObjectKeyValueTime(String key, Object value, long time){
         try {
+            key = head  + key;
             ValueOperations<Object,Object> ops = redisTemplate.opsForValue();
             ops.set(key, value);
             if (time > 0) redisTemplate.expire(key, time, TimeUnit.SECONDS);
@@ -118,6 +125,7 @@ public class RedisDao {
      */
     public boolean hasKey(String key){
         try {
+            key = head  +key;
             return redisTemplate.hasKey(key);
         } catch (Exception t) {
             return false;
@@ -131,6 +139,7 @@ public class RedisDao {
      */
     public boolean remove(String key){
         try {
+            key = head  +key;
             redisTemplate.delete(key);
             return true;
         } catch (Exception t) {
