@@ -388,9 +388,9 @@ public class CrawlerController extends Controller{
                         try{
                             String status = tr.getElementsByTag("td").get(3).child(0).html();
                             status = status.trim();
-//                            if(status.equals("未")||status.equals("完")||status.equals("腰斩")||status.equals("延期")){
-//                                continue;
-//                            }
+                            if(status.equals("未")||status.equals("完")||status.equals("腰斩")||status.equals("延期")){
+                                continue;
+                            }
                             String matchId = tr.attr("matchid");
                             if(matchId!=null){
                                 List<MatchModel> has = matchService.selectMatchByMatchId(matchId);
@@ -485,11 +485,9 @@ public class CrawlerController extends Controller{
      * 简单洗文
      * @param text
      * @return
-     * @throws IOException
-     * @throws SAXException
      */
     @RequestMapping(value = "/washArticle",method = RequestMethod.POST)
-    public String washArticle(String text) throws IOException, SAXException {
+    public String washArticle(String text) {
         return washArticleFacade.WashArticleText(text);
     }
 

@@ -4,7 +4,6 @@
     <list default="true" readonly="true" id="07a8a1a3-9b7b-4af8-92a1-33f96ce65337" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/ddd/task/LiveTask.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/ddd/task/LiveTask.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,10 +49,12 @@
       <file leaf-file-name="CrawlerController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="211" column="37" lean-forward="false" selection-start-line="211" selection-start-column="37" selection-end-line="211" selection-end-column="37" />
+            <state relative-caret-position="169">
+              <caret line="393" column="51" lean-forward="false" selection-start-line="393" selection-start-column="51" selection-end-line="393" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#23721#23722#0" expanded="true" />
+                <element signature="e#23783#23784#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1396,12 +1397,12 @@
       <workItem from="1526369048171" duration="22000" />
       <workItem from="1526369193276" duration="59019000" />
       <workItem from="1527130970967" duration="1640000" />
-      <workItem from="1527145151667" duration="39588000" />
+      <workItem from="1527145151667" duration="39798000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215186000" />
+    <option name="totallyTimeSpent" value="215396000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1935,10 +1936,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="211" column="37" lean-forward="false" selection-start-line="211" selection-start-column="37" selection-end-line="211" selection-end-column="37" />
+        <state relative-caret-position="169">
+          <caret line="393" column="51" lean-forward="false" selection-start-line="393" selection-start-column="51" selection-end-line="393" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#23721#23722#0" expanded="true" />
+            <element signature="e#23783#23784#0" expanded="true" />
           </folding>
         </state>
       </provider>
