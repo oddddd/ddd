@@ -34,6 +34,16 @@ public class MatchImpl implements MatchService{
     }
 
     @Override
+    public List<MatchModel> selectMatchByMatchId(String matchId) {
+        return matchMapper.findMatchByMatchId(matchId);
+    }
+
+    @Override
+    public Integer updateMatchPointByMatchId(String matchId, Integer homePoint, Integer awayPoint) {
+        return matchMapper.updateMatchPointByMatchId(matchId,homePoint,awayPoint);
+    }
+
+    @Override
     public Integer insertLiveStreamBind(LiveStreamBindModel model) {
         try{
             if(model.getFid() == null || model.getLiveUrl() == null || model.getLiveName() == null){

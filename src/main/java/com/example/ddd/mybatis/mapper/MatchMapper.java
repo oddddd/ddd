@@ -5,6 +5,7 @@ import com.example.ddd.mybatis.model.MatchModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -20,4 +21,11 @@ import java.util.List;
 public interface MatchMapper extends MyMapper<MatchModel> {
     @Select("SELECT * FROM we_match WHERE kickoffTime = #{kickoffTime}")
     List<MatchModel> findMatchByKickoffTime(@Param("kickoffTime") Timestamp kickoffTime);
+
+    @Select("SELECT * FROM we_match WHERE matchId = #{matchId}")
+    List<MatchModel> findMatchByMatchId(@Param("matchId") String matchId);
+
+    @Update("UPDATE we_match set homePoint = #{homePoint},awayPoint = #{awayPoint} WHERE matchId = #{matchId}")
+    Integer updateMatchPointByMatchId(@Param("matchId") String matchId,@Param("homePoint") Integer homePoint,@Param("awayPoint") Integer awayPoint);
 }
+

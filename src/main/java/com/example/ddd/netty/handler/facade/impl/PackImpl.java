@@ -76,7 +76,7 @@ public class PackImpl implements PackFacade{
     public ChannelFuture write(ChannelHandlerContext ctx, DataModel model) {
         String sign = sign(model);
         Long time = System.currentTimeMillis() / 1000;
-        String response = head+model.getProtocol()+model.getBody()+time.toString()+sign+fail;
+        String response = head+separator+model.getProtocol()+separator+model.getBody()+separator+time.toString()+separator+sign+separator+fail;
         return ctx.writeAndFlush(Unpooled.copiedBuffer(response.getBytes()));
     }
 }

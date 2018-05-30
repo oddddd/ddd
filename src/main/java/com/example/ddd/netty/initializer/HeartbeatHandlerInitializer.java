@@ -2,6 +2,7 @@ package com.example.ddd.netty.initializer;
 
 import com.example.ddd.netty.handler.ServerHandler;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -26,6 +27,7 @@ public class HeartbeatHandlerInitializer extends ChannelInitializer {
     @Autowired
     ServerHandler serverHandler;
 
+    /** {@inheritDoc} */
     @Override
     protected void initChannel(Channel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();

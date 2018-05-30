@@ -3,13 +3,14 @@ import com.example.ddd.crawler.facade.CrawlerFacade;
 import com.example.ddd.crawler.facade.WashArticleFacade;
 import com.example.ddd.crawler.model.AllLiveModel;
 import com.example.ddd.crawler.model.AllMatchModel;
+import com.example.ddd.crawler.model.LiveModel;
 import com.example.ddd.library.OkHttp;
 import com.example.ddd.crawler.model.AllConsultModel;
 import com.example.ddd.ddd.Controller;
 import com.example.ddd.library.RedisDao;
 import com.example.ddd.mybatis.mapper.ConsultMapper;
 import com.example.ddd.mybatis.model.ConsultModel;
-import com.example.ddd.mybatis.model.LiveStreamBindModel;
+import com.example.ddd.mybatis.model.MatchModel;
 import com.example.ddd.mybatis.service.ConsultService;
 import com.example.ddd.mybatis.service.MatchService;
 import org.jsoup.Jsoup;
@@ -17,15 +18,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -43,6 +44,8 @@ public class CrawlerController extends Controller{
     RedisDao redisDao;
     @Autowired
     MatchService matchService;
+    @Autowired
+    Environment env;
 
     /**
      * 159彩票网站咨询爬取
@@ -356,6 +359,119 @@ public class CrawlerController extends Controller{
                 }
             }
             crawlerFacade.matchBindLiveStreamList(modelList);
+            return "ok";
+        }catch (Exception e){
+            return "error";
+        }
+    }
+
+    /**
+     * 获取直播比赛列表
+     * @return
+     */
+    @RequestMapping(value = "/crawlerOkoooSoccerList",method = RequestMethod.GET)
+    public String crawlerOkoooSoccerList(String url){
+        try{
+            OkHttp okHttp = new OkHttp();
+            byte[] b = okHttp.getStringByUrlTwo(url);
+            String html = new String(b, "GB2312");
+            Document doc = Jsoup.parse(html);
+            Elements tableborderList = doc.getElementsByClass("tableborder");
+            List<String> roomList = new ArrayList<>();
+            for(Element tableborder : tableborderList){
+                try{
+                    Elements trList = tableborder.getElementsByTag("tr");
+                    for (Element tr : trList){
+                        try{
+                            String status = tr.getElementsByTag("td").get(3).child(0).html();
+                            status = status.trim();
+//                            if(status.equals("未")||status.equals("完")||status.equals("腰斩")||status.equals("延期")){
+//                                continue;
+//                            }
+                            String matchId = tr.attr("matchid");
+                            if(matchId!=null){
+                                List<MatchModel> has = matchService.selectMatchByMatchId(matchId);
+                                if(has.size()>0){
+                                    roomList.add(matchId);
+                                }
+                            }
+                        }catch (Exception e){
+                            continue;
+                        }
+                    }
+                }catch (Exception e){
+                    continue;
+                }
+            }
+            env.getProperty("redis.matchLiveListKey");
+            String matchLiveListKey = env.getProperty("redis.matchLiveListKey");
+            Integer matchLiveListTime = 7200;
+            redisDao.setObjectKeyValueTime(matchLiveListKey,roomList,matchLiveListTime);
+            return "ok";
+        }catch (Exception e){
+            return "error";
+        }
+    }
+
+    /**
+     * 获取直播比赛内容
+     * @return
+     */
+    @RequestMapping(value = "/crawlerOkoooSoccerDetail",method = RequestMethod.GET)
+    public String crawlerOkoooSoccerDetail(){
+        try{
+            String matchLiveListKey = env.getProperty("redis.matchLiveListKey");
+            List<String> roomList = redisDao.getObjectKeyValue(matchLiveListKey);
+            for(String room : roomList){
+                try{
+                    String matchRoomSocketDetailKey = env.getProperty("redis.matchRoomSocketDetail");
+                    Integer matchRoomSocketDetailTime = 7200;
+                    String url = "http://www.okooo.com/soccer/match/" + room;
+                    OkHttp okHttp = new OkHttp();
+                    byte[] b = okHttp.getStringByUrlThree(url);
+                    String html = new String(b, "GB2312");
+                    Document doc = Jsoup.parse(html);
+                    Elements divList = doc.getElementsByClass("livelistbox").get(0).getElementsByTag("div");
+                    List<LiveModel> liveModelsList = new ArrayList<>();
+                    List<MatchModel> has = matchService.selectMatchByMatchId(room);
+                    if(has.size()>0) {
+                        for (Element div : divList) {
+                            String homePoint = div.getElementsByClass("livelistconbifen").get(0).getElementsByTag("b").get(0).html();
+                            String awayPoint = div.getElementsByClass("livelistconbifen").get(0).getElementsByTag("b").get(2).html();
+                            String time = div.getElementsByClass("livelistcontime").get(0).html();
+                            String content = div.getElementsByClass("livelistcontext").get(0).html();
+                            String type = div.firstElementSibling().attr("class");
+                            String[] typeList = type.split("_");
+                            try{
+                                type = typeList[2];
+                            }catch (Exception e){
+                                type = "0";
+                            }
+                            homePoint = homePoint.trim().equals("") ? "0" : homePoint.trim();
+                            awayPoint = awayPoint.trim().equals("") ? "0" : awayPoint.trim();
+                            LiveModel liveModel = new LiveModel();
+                            liveModel.setHomePoint(homePoint);
+                            liveModel.setAwayPoint(awayPoint);
+                            liveModel.setTime(time);
+                            liveModel.setContent(content);
+                            liveModel.setType(type);
+                            liveModel.setMatchId(room);
+                            MatchModel oldMatch = has.get(0);
+                            Integer intAwayPoint = Integer.parseInt(awayPoint);
+                            Integer intHomePoint = Integer.parseInt(homePoint);
+                            if (!oldMatch.getAwayPoint().equals(intAwayPoint) || !oldMatch.getHomePoint().equals(intHomePoint)) {
+                                matchService.updateMatchPointByMatchId(room, intHomePoint, intAwayPoint);
+                            }
+                            liveModelsList.add(liveModel);
+                        }
+                    }
+                    Collections.reverse(liveModelsList);
+                    matchRoomSocketDetailKey = matchRoomSocketDetailKey+room;
+                    redisDao.setObjectKeyValueTime(matchRoomSocketDetailKey,liveModelsList,matchRoomSocketDetailTime);
+                }catch (Exception e){
+                    continue;
+                }
+            }
             return "ok";
         }catch (Exception e){
             return "error";
