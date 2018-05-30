@@ -2,8 +2,60 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="07a8a1a3-9b7b-4af8-92a1-33f96ce65337" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/DddApplication.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/example/ddd/demo/ddd/DddApplicationTests.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/DddNettyTcpApplication.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/DddNettyTcpApplication.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/controller/CrawlerController.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/controller/CrawlerController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/CrawlerFacade.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/CrawlerFacade.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/WashArticleFacade.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/WashArticleFacade.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/impl/CrawlerImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/impl/CrawlerImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/impl/WashArticleImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/impl/WashArticleImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllConsultModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllConsultModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllLiveModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllLiveModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllMatchModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllMatchModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/LiveModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/LiveModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/BankInfoUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/BankInfoUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/DateUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/DateUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/FileTxtUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/FileTxtUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/MD5Utils.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/MD5Utils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/ObjectUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/ObjectUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/OkHttp.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/OkHttp.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/RedisDao.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/RedisDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/SpringContextUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/SpringContextUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/ThreadPoolManager.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/ThreadPoolManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/MyMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/MyMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/handler/DataTimeTypeHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/handler/DataTimeTypeHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/mapper/MatchMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/mapper/MatchMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/mapper/UserMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/mapper/UserMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultAuthorModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultAuthorModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultClassModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultClassModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/LiveStreamBindModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/LiveStreamBindModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/MatchModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/MatchModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/UserModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/UserModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/ConsultService.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/ConsultService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/MatchService.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/MatchService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/impl/ConsultImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/impl/ConsultImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/impl/MatchImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/impl/MatchImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/TCPServer.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/TCPServer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/ServerHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/ServerHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/PackFacade.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/PackFacade.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/ReadFacade.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/ReadFacade.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/impl/PackImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/impl/PackImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/impl/ReadImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/impl/ReadImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/model/ChannelListModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/model/ChannelListModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/model/DataModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/model/DataModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/initializer/HeartbeatHandlerInitializer.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/initializer/HeartbeatHandlerInitializer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/task/LiveTask.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/task/LiveTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ddd-0.0.1-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/ddd-0.0.1-SNAPSHOT.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ddd-0.0.1-SNAPSHOT.jar.original" afterPath="$PROJECT_DIR$/target/ddd-0.0.1-SNAPSHOT.jar.original" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/ddd/DddApplication.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/ddd/DddApplication.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,12 +78,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="67" column="43" lean-forward="false" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DddNettyTcpApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/DddNettyTcpApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrawlerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="229" column="12" lean-forward="true" selection-start-line="229" selection-start-column="12" selection-end-line="229" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CrawlerTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/task/CrawlerTask.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="157">
-              <caret line="22" column="75" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="75" />
+              <caret line="22" column="75" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="75" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DddApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/DddApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#322#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -39,23 +135,9 @@
       <file leaf-file-name="RedisDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/library/RedisDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="179">
               <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CrawlerController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="393" column="51" lean-forward="false" selection-start-line="393" selection-start-column="51" selection-end-line="393" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#23721#23722#0" expanded="true" />
-                <element signature="e#23783#23784#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -64,7 +146,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/netty/handler/ServerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="175">
-              <caret line="51" column="39" lean-forward="true" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+              <caret line="51" column="39" lean-forward="false" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -82,7 +164,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>beans</find>
       <find>redisTemplate</find>
       <find>RedisClientUtil</find>
       <find>del</find>
@@ -100,7 +181,6 @@
       <find>redis</find>
       <find>redisDao</find>
       <find>wash.article.filelink1</find>
-      <find>crawlerOkoooSoccerList</find>
       <find>SpringContextUtil</find>
       <find>redis.redisUserKey</find>
       <find>MatchRoomSocketDetail</find>
@@ -112,6 +192,8 @@
       <find>matchRoomSocketDetailKey+room</find>
       <find>channelUnregistered</find>
       <find>matchRoomSocketDetailKey</find>
+      <find>consultMapper</find>
+      <find>crawlerOkoooSoccerList</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -131,7 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/mybatis/model/ConsultAuthorModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/WashController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/facade/WashArticleFacade.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/library/FileTxtUtil.java" />
@@ -170,7 +251,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/mybatis/service/MatchService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/mybatis/service/impl/MatchImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/mybatis/mapper/MatchMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/task/CrawlerTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/netty/handler/facade/impl/PackImpl.java" />
@@ -181,7 +261,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/netty/handler/model/ChannelListModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/netty/handler/facade/impl/ReadImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/task/LiveTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/DddApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
       </list>
     </option>
   </component>
@@ -1397,12 +1479,12 @@
       <workItem from="1526369048171" duration="22000" />
       <workItem from="1526369193276" duration="59019000" />
       <workItem from="1527130970967" duration="1640000" />
-      <workItem from="1527145151667" duration="39798000" />
+      <workItem from="1527145151667" duration="41624000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215396000" />
+    <option name="totallyTimeSpent" value="217222000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1415,7 +1497,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1423,12 +1504,12 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4389359" sideWeight="0.50572246" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2744861" sideWeight="0.50572246" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.033619456" sideWeight="0.4858871" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.49570817" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2744861" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2744861" sideWeight="0.49427754" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26752505" sideWeight="0.4841629" order="0" side_tool="false" content_ui="combo" />
@@ -1584,17 +1665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/DddApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="44" />
-          <folding>
-            <element signature="e#240#241#0" expanded="false" />
-            <element signature="e#296#297#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/squareup/okhttp3/okhttp/3.10.0/okhttp-3.10.0.jar!/okhttp3/Request.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
@@ -1670,14 +1740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="67" column="40" lean-forward="false" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
@@ -1691,16 +1753,6 @@
         <state relative-caret-position="405">
           <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/DddNettyTcpApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1839,14 +1891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/library/RedisDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.25.Final/netty-all-4.1.25.Final-sources.jar!/io/netty/channel/ChannelOutboundInvoker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
@@ -1884,7 +1928,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/netty/handler/ServerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
-          <caret line="51" column="39" lean-forward="true" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+          <caret line="51" column="39" lean-forward="false" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -1926,23 +1970,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/library/RedisDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/task/CrawlerTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
-          <caret line="22" column="75" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="75" />
+          <caret line="22" column="75" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/DddApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#322#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/DddNettyTcpApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="393" column="51" lean-forward="false" selection-start-line="393" selection-start-column="51" selection-end-line="393" selection-end-column="51" />
+        <state relative-caret-position="98">
+          <caret line="229" column="12" lean-forward="true" selection-start-line="229" selection-start-column="12" selection-end-line="229" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#23721#23722#0" expanded="true" />
-            <element signature="e#23783#23784#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="67" column="43" lean-forward="false" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

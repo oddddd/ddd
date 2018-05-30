@@ -12,6 +12,7 @@ com/example/ddd/crawler/facade/impl/CrawlerImpl.class
 com/example/ddd/mybatis/mapper/ConsultMapper.class
 com/example/ddd/library/ObjectUtil.class
 com/example/ddd/crawler/model/AllConsultModel.class
+com/example/ddd/crawler/model/LiveModel.class
 com/example/ddd/mybatis/mapper/MatchMapper.class
 com/example/ddd/mybatis/mapper/ConsultClassMapper.class
 com/example/ddd/mybatis/model/MatchModel.class
@@ -29,6 +30,7 @@ com/example/ddd/netty/handler/facade/impl/PackImpl.class
 com/example/ddd/task/CrawlerTask.class
 com/example/ddd/library/ThreadPoolManager.class
 com/example/ddd/library/BankInfoUtil.class
+com/example/ddd/task/LiveTask.class
 com/example/ddd/crawler/model/AllLiveModel.class
 com/example/ddd/money/controller/MoneyController.class
 com/example/ddd/mybatis/service/ConsultService.class
@@ -45,9 +47,9 @@ com/example/ddd/library/RedisDao.class
 com/example/ddd/netty/handler/facade/PackFacade.class
 com/example/ddd/ddd/Controller.class
 com/example/ddd/mybatis/model/ConsultModel.class
+com/example/ddd/netty/handler/model/ChannelListModel.class
 com/example/ddd/library/MyRedisConfigBean.class
 com/example/ddd/crawler/facade/WashArticleFacade.class
 com/example/ddd/library/FileTxtUtil.class
 com/example/ddd/library/SpringContextUtil.class
-com/example/ddd/DddApplication.class
 com/example/ddd/netty/handler/facade/impl/ReadImpl.class

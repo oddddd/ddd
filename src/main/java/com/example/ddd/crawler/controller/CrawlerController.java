@@ -301,6 +301,11 @@ public class CrawlerController extends Controller{
         }
     }
 
+    /**
+     * 天天直播
+     * @param url
+     * @return
+     */
     @RequestMapping(value = "/TTZhiBo",method = RequestMethod.GET)
     public String crawlerTTZhiBo(String url){
         try{

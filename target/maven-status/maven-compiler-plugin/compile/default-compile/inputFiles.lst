@@ -7,6 +7,7 @@
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/mybatis/handler/DataTimeTypeHandler.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/crawler/model/AllConsultModel.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/netty/handler/facade/ReadFacade.java
+/Users/dddd/java/ddd/src/main/java/com/example/ddd/netty/handler/model/ChannelListModel.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/library/ObjectUtil.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/mybatis/mapper/ConsultMapper.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/mybatis/mapper/UserMapper.java
@@ -37,6 +38,7 @@
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/mybatis/model/LiveStreamBindModel.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/mybatis/service/impl/MoneyImpl.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/netty/TCPServer.java
+/Users/dddd/java/ddd/src/main/java/com/example/ddd/task/LiveTask.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/mybatis/mapper/ConsultAuthorMapper.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/netty/handler/facade/impl/PackImpl.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/crawler/facade/CrawlerFacade.java
@@ -51,3 +53,4 @@
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/library/OkHttp.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/mybatis/model/ConsultClassModel.java
 /Users/dddd/java/ddd/src/main/java/com/example/ddd/library/ThreadPoolManager.java
+/Users/dddd/java/ddd/src/main/java/com/example/ddd/crawler/model/LiveModel.java
