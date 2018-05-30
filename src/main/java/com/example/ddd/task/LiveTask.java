@@ -92,7 +92,7 @@ public class LiveTask {
                                         packFacade.write(channelHandlerContext, dataModel);
                                         newUserSocketList.add(userSocket);
                                     }catch (Exception e){
-                                        continue;
+                                        logger.info("live For - log : minor error : " + e);
                                     }
                                 }
                                 num++;
@@ -101,7 +101,7 @@ public class LiveTask {
                         }
                         redisDao.setObjectKeyValueTime(matchRoomSocketKey+room,newUserSocketList,7200);
                     }catch (Exception e){
-                        continue;
+                        logger.info("live For - log : minor error : " + e);
                     }
                 }
                 logger.info("liveOne - log : ok");
@@ -115,6 +115,7 @@ public class LiveTask {
             logger.info("liveOne - before not end");
         }
     }
+
     private boolean liveTwoBotten = true;
     @Scheduled(cron = "0/40 * * * * ?") // 每40秒执行一次
     public void liveTwo() throws IOException, SAXException {
@@ -133,8 +134,9 @@ public class LiveTask {
             logger.info("liveTwo - before not end");
         }
     }
+
     private boolean liveThreeBotten = true;
-    @Scheduled(cron = "0/20 * * * * ?") // 每10秒执行一次
+    @Scheduled(cron = "0/20 * * * * ?") // 每20秒执行一次
     public void liveThree() {
         if (liveThreeBotten){
             liveThreeBotten = false;

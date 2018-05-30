@@ -17,6 +17,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/crawler")
 public class CrawlerController extends Controller{
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     ConsultService consultService;
     @Autowired
@@ -181,7 +185,7 @@ public class CrawlerController extends Controller{
                     if(dom.size() == 0)
                         continue;
                     Elements pList = dom.get(0).getElementsByTag("p");
-                    String consultDetail = "";
+                    StringBuilder consultDetail = new StringBuilder();
                     ConsultModel insert = new ConsultModel();
                     for( Element p : pList ){
                         if(p.getElementsByTag("img").size()>0){
@@ -189,13 +193,13 @@ public class CrawlerController extends Controller{
                             if(!imgUrl.contains("https")){
                                 imgUrl = "https:"+imgUrl;
                             }
-                            consultDetail += "<p><img src='"+imgUrl+"'></p>";
+                            consultDetail.append("<p><img src='").append(imgUrl).append("'></p>");
                             if(insert.getConsultImg() == null)
                                 insert.setConsultImg(imgUrl);
                             continue;
                         }
                         String text = p.html();
-                        consultDetail += "<p>"+text+"</p>";
+                        consultDetail.append("<p>").append(text).append("</p>");
                     }
                     insert.setClassId(consult.getClassId());
                     insert.setHasExamine(0);
@@ -203,11 +207,10 @@ public class CrawlerController extends Controller{
                     insert.setUrl(consult.getUrl());
                     insert.setAuthorId(consult.getAuthorId());
                     insert.setUrlName("直播吧");
-                    insert.setConsultDetail(consultDetail);
+                    insert.setConsultDetail(consultDetail.toString());
                     consultMapper.insertSelective(insert);
                 }catch (Exception e){
-                    System.out.println(e);
-                    continue;
+                    logger.info("crawlerZhiBo8 For - log : minor error : " + e);;
                 }
             }
             return "ok";
@@ -283,12 +286,12 @@ public class CrawlerController extends Controller{
                             liveList.add(live);
                             newMatchModel.setLiveList(liveList);
                         }catch (Exception e){
-                            continue;
+                            logger.info("crawler9to5 For - log : minor error : " + e);
                         }
                     }
                     modelList.add(newMatchModel);
                 }catch (Exception e){
-                    continue;
+                    logger.info("crawler9to5 For - log : minor error : " + e);
                 }
             }
             crawlerFacade.matchBindLiveStreamList(modelList);
@@ -345,17 +348,17 @@ public class CrawlerController extends Controller{
                                     live.setType(2);
                                     liveList.add(live);
                                 }catch (Exception e){
-                                    continue;
+                                    logger.info("crawlerTTZhiBo For - log : minor error : " + e);
                                 }
                             }
                             match.setLiveList(liveList);
                             modelList.add(match);
                         }catch (Exception e){
-                            continue;
+                            logger.info("crawlerTTZhiBo For - log : minor error : " + e);
                         }
                     }
                 }catch (Exception e){
-                    continue;
+                    logger.info("crawlerTTZhiBo For - log : minor error : " + e);
                 }
             }
             crawlerFacade.matchBindLiveStreamList(modelList);
@@ -396,11 +399,11 @@ public class CrawlerController extends Controller{
                                 }
                             }
                         }catch (Exception e){
-                            continue;
+                            logger.info("crawlerOkoooSoccerList For - log : minor error : " + e);
                         }
                     }
                 }catch (Exception e){
-                    continue;
+                    logger.info("crawlerOkoooSoccerList For - log : minor error : " + e);
                 }
             }
             env.getProperty("redis.matchLiveListKey");
@@ -469,7 +472,7 @@ public class CrawlerController extends Controller{
                     matchRoomSocketDetailKey = matchRoomSocketDetailKey+room;
                     redisDao.setObjectKeyValueTime(matchRoomSocketDetailKey,liveModelsList,matchRoomSocketDetailTime);
                 }catch (Exception e){
-                    continue;
+                    logger.info("crawlerOkoooSoccerDetail For - log : minor error : " + e);
                 }
             }
             return "ok";
