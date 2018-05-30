@@ -2,60 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="07a8a1a3-9b7b-4af8-92a1-33f96ce65337" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/DddApplication.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/example/ddd/demo/ddd/DddApplicationTests.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/DddNettyTcpApplication.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/DddNettyTcpApplication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/controller/CrawlerController.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/controller/CrawlerController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/CrawlerFacade.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/CrawlerFacade.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/WashArticleFacade.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/WashArticleFacade.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/impl/CrawlerImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/impl/CrawlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/impl/WashArticleImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/facade/impl/WashArticleImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllConsultModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllConsultModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllLiveModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllLiveModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllMatchModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/AllMatchModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/LiveModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/crawler/model/LiveModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/BankInfoUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/BankInfoUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/DateUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/DateUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/FileTxtUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/FileTxtUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/MD5Utils.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/MD5Utils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/ObjectUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/ObjectUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/OkHttp.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/OkHttp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/RedisDao.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/RedisDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/SpringContextUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/SpringContextUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/library/ThreadPoolManager.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/library/ThreadPoolManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/MyMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/MyMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/handler/DataTimeTypeHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/handler/DataTimeTypeHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/mapper/MatchMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/mapper/MatchMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/mapper/UserMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/mapper/UserMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultAuthorModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultAuthorModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultClassModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultClassModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/ConsultModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/LiveStreamBindModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/LiveStreamBindModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/MatchModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/MatchModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/UserModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/model/UserModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/ConsultService.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/ConsultService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/MatchService.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/MatchService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/impl/ConsultImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/impl/ConsultImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/impl/MatchImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/mybatis/service/impl/MatchImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/TCPServer.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/TCPServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/ServerHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/ServerHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/PackFacade.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/PackFacade.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/ReadFacade.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/ReadFacade.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/impl/PackImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/impl/PackImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/impl/ReadImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/facade/impl/ReadImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/model/ChannelListModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/model/ChannelListModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/model/DataModel.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/handler/model/DataModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/initializer/HeartbeatHandlerInitializer.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/netty/initializer/HeartbeatHandlerInitializer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/ddd/task/LiveTask.class" afterPath="$PROJECT_DIR$/target/classes/com/example/ddd/task/LiveTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ddd-0.0.1-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/ddd-0.0.1-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ddd-0.0.1-SNAPSHOT.jar.original" afterPath="$PROJECT_DIR$/target/ddd-0.0.1-SNAPSHOT.jar.original" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/ddd/DddApplication.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/ddd/DddApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/ddd/crawler/controller/CrawlerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,8 +28,8 @@
       <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="67" column="43" lean-forward="false" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+            <state relative-caret-position="289">
+              <caret line="69" column="32" lean-forward="false" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -1479,12 +1426,12 @@
       <workItem from="1526369048171" duration="22000" />
       <workItem from="1526369193276" duration="59019000" />
       <workItem from="1527130970967" duration="1640000" />
-      <workItem from="1527145151667" duration="41624000" />
+      <workItem from="1527145151667" duration="41746000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217222000" />
+    <option name="totallyTimeSpent" value="217344000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2016,8 +1963,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="67" column="43" lean-forward="false" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+        <state relative-caret-position="289">
+          <caret line="69" column="32" lean-forward="false" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
           <folding />
         </state>
       </provider>
