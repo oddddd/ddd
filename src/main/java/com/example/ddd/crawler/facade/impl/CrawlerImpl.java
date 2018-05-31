@@ -5,12 +5,13 @@ import com.example.ddd.crawler.model.AllLiveModel;
 import com.example.ddd.crawler.model.AllMatchModel;
 import com.example.ddd.mybatis.mapper.ConsultAuthorMapper;
 import com.example.ddd.mybatis.mapper.ConsultClassMapper;
-import com.example.ddd.mybatis.model.ConsultAuthorModel;
-import com.example.ddd.mybatis.model.ConsultClassModel;
-import com.example.ddd.mybatis.model.LiveStreamBindModel;
-import com.example.ddd.mybatis.model.MatchModel;
+import com.example.ddd.mybatis.mapper.LiveMatchBindMapper;
+import com.example.ddd.mybatis.mapper.LiveMatchMapper;
+import com.example.ddd.mybatis.model.*;
 import com.example.ddd.mybatis.service.ConsultService;
 import com.example.ddd.mybatis.service.MatchService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +27,15 @@ import java.util.List;
  */
 @Service
 public class CrawlerImpl implements CrawlerFacade{
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     ConsultAuthorMapper consultAuthorMapper;
     @Autowired
     ConsultClassMapper consultClassMapper;
+    @Autowired
+    LiveMatchMapper liveMatchMapper;
+    @Autowired
+    LiveMatchBindMapper liveMatchBindMapper;
     @Autowired
     ConsultService consultService;
     @Autowired
@@ -103,7 +109,7 @@ public class CrawlerImpl implements CrawlerFacade{
                     break;
                 }
             }catch (Exception e){
-                continue;
+                logger.info("selectMatchIdByHomeNameAwayNameKickoffTime For - log : minor error : " + e);
             }
         }
         return matchId;
@@ -129,14 +135,51 @@ public class CrawlerImpl implements CrawlerFacade{
                             Integer bindId = matchService.insertLiveStreamBind(liveStreamBindModel);
                             idList.add(bindId);
                         }catch (Exception e){
-                            continue;
+                            logger.info("matchBindLiveStreamList For - log : minor error : " + e);
                         }
                     }
                 }
             }catch (Exception e){
-                continue;
+                logger.info("matchBindLiveStreamList For - log : minor error : " + e);
             }
         }
         return idList;
+    }
+
+    @Override
+    public void addLiveMatchList(List<AllMatchModel> list) {
+        for( AllMatchModel allMatchModel : list){
+            try{
+                LiveMatchModel liveMatchModel = new LiveMatchModel();
+                liveMatchModel.setAwayName(allMatchModel.getAwayName());
+                liveMatchModel.setHomeName(allMatchModel.getHomeName());
+                liveMatchModel.setMatchName(allMatchModel.getMatchName());
+                liveMatchModel.setKickoffTime(allMatchModel.getKickoffTime());
+                List<LiveMatchModel> has = liveMatchMapper.select(liveMatchModel);
+                if(has.size()<1){
+                    liveMatchModel.setLeagueName(allMatchModel.getLeagueName());
+                    int insertRet = liveMatchMapper.insertSelective(liveMatchModel);
+                    if( insertRet > 0 && liveMatchModel.getId() != null){
+                        for(AllLiveModel allLiveModel  : allMatchModel.getLiveList()){
+                            try{
+                                LiveMatchBindModel liveMatchBindModel = new LiveMatchBindModel();
+                                liveMatchBindModel.setLiveUrl(allLiveModel.getLiveUrl());
+                                liveMatchBindModel.setLiveName(allLiveModel.getLiveName());
+                                liveMatchBindModel.setType(allLiveModel.getType());
+                                liveMatchBindModel.setFid(liveMatchModel.getId().toString());
+                                List<LiveMatchBindModel> liveMatchBindModelsList = liveMatchBindMapper.select(liveMatchBindModel);
+                                if(liveMatchBindModelsList.size()<1){
+                                    liveMatchBindMapper.insertSelective(liveMatchBindModel);
+                                }
+                            }catch (Exception e){
+                                logger.info("addLiveMatchList For - log : minor error : " + e);
+                            }
+                        }
+                    }
+                }
+            }catch (Exception e){
+                logger.info("addLiveMatchList For - log : minor error : " + e);
+            }
+        }
     }
 }

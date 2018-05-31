@@ -29,5 +29,17 @@ public interface CrawlerFacade {
      */
     Integer selectMatchIdByHomeNameAwayNameKickoffTime(String homeName,String awayName,String kickoffTime);
 
+    /**
+     * 绑定直播流
+     * @param list
+     * @return
+     */
     List<Integer> matchBindLiveStreamList(List<AllMatchModel> list);
+
+    /**
+     * 添加所有比赛
+     * @param list
+     * @return
+     */
+    void addLiveMatchList(List<AllMatchModel> list);
 }

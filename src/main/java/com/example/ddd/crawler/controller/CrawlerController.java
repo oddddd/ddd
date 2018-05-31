@@ -122,7 +122,7 @@ public class CrawlerController extends Controller{
                     insert.setUrlName("159彩票");
                     consultMapper.insertSelective(insert);
                 }catch (Exception e){
-                    continue;
+                    logger.info("crawler159Cai For - log : minor error : " + e);
                 }
             }
             return "ok";
@@ -210,7 +210,7 @@ public class CrawlerController extends Controller{
                     insert.setConsultDetail(consultDetail.toString());
                     consultMapper.insertSelective(insert);
                 }catch (Exception e){
-                    logger.info("crawlerZhiBo8 For - log : minor error : " + e);;
+                    logger.info("crawlerZhiBo8 For - log : minor error : " + e);
                 }
             }
             return "ok";
@@ -295,6 +295,7 @@ public class CrawlerController extends Controller{
                 }
             }
             crawlerFacade.matchBindLiveStreamList(modelList);
+            crawlerFacade.addLiveMatchList(modelList);
             return "ok";
         }catch (Exception e){
             return "error";
