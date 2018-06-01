@@ -27,5 +27,8 @@ public interface MatchMapper extends MyMapper<MatchModel> {
 
     @Update("UPDATE we_match set homePoint = #{homePoint},awayPoint = #{awayPoint} WHERE matchId = #{matchId}")
     Integer updateMatchPointByMatchId(@Param("matchId") String matchId,@Param("homePoint") Integer homePoint,@Param("awayPoint") Integer awayPoint);
+
+    @Update("UPDATE we_match set oddsUrl = #{oddsUrl} WHERE id = #{id}")
+    Integer updateOddsUrlById(@Param("id") Integer id,@Param("oddsUrl") String oddsUrl);
 }
 

@@ -3,6 +3,9 @@ package com.example.ddd.crawler.facade.impl;
 import com.example.ddd.crawler.facade.CrawlerFacade;
 import com.example.ddd.crawler.model.AllLiveModel;
 import com.example.ddd.crawler.model.AllMatchModel;
+import com.example.ddd.crawler.model.OddsModel;
+import com.example.ddd.library.OkHttp;
+import com.example.ddd.library.RedisDao;
 import com.example.ddd.mybatis.mapper.ConsultAuthorMapper;
 import com.example.ddd.mybatis.mapper.ConsultClassMapper;
 import com.example.ddd.mybatis.mapper.LiveMatchBindMapper;
@@ -10,11 +13,17 @@ import com.example.ddd.mybatis.mapper.LiveMatchMapper;
 import com.example.ddd.mybatis.model.*;
 import com.example.ddd.mybatis.service.ConsultService;
 import com.example.ddd.mybatis.service.MatchService;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +49,8 @@ public class CrawlerImpl implements CrawlerFacade{
     ConsultService consultService;
     @Autowired
     MatchService matchService;
+    @Autowired
+    RedisDao redisDao;
     @Override
     public Integer addAuthorByAuthorName(String name) {
         try{
@@ -180,6 +191,87 @@ public class CrawlerImpl implements CrawlerFacade{
             }catch (Exception e){
                 logger.info("addLiveMatchList For - log : minor error : " + e);
             }
+        }
+    }
+
+    @Cacheable(value = "crawler500Detail",key = "'crawler500Detail' + #id")
+    @Override
+    public Object getMatchOddsById(Integer id) {
+        try{
+            MatchModel matchModel = matchService.selectMatchById(id);
+            List<OddsModel> oddsModels = new ArrayList<>();
+            if(matchModel != null && matchModel.getOddsUrl() != null){
+                OkHttp okHttp = new OkHttp();
+                byte[] b = okHttp.getStringByUrlTwo(matchModel.getOddsUrl());
+                String html = new String(b, "GB2312");
+                Document doc = Jsoup.parse(html);
+                Elements trs = doc.getElementById("datatb").getElementsByTag("tbody").get(0).children();
+                for(Element tr : trs){
+                    try{
+                        String oddsName = tr.child(1).attr("title");
+                        //及时赔率
+                        Element firstTr = tr.child(2).getElementsByTag("tr").get(0);
+                        String firstOddsWin = firstTr.getElementsByTag("td").get(0).html();
+                        String firstOddsDeuce = firstTr.getElementsByTag("td").get(1).html();
+                        String firstOddsLose = firstTr.getElementsByTag("td").get(2).html();
+                        Element nowTr = tr.child(2).getElementsByTag("tr").get(1);
+                        String nowOddsWin = nowTr.getElementsByTag("td").get(0).html();
+                        String nowOddsDeuce = nowTr.getElementsByTag("td").get(1).html();
+                        String nowOddsLose = nowTr.getElementsByTag("td").get(2).html();
+                        //及时概率
+                        Element firstRateTr =  tr.child(3).getElementsByTag("tr").get(0);
+                        String firstRateWin = firstRateTr.getElementsByTag("td").get(0).html();
+                        String firstRateDeuce = firstRateTr.getElementsByTag("td").get(1).html();
+                        String firstRateLose = firstRateTr.getElementsByTag("td").get(2).html();
+                        Element nowtRateTr =  tr.child(3).getElementsByTag("tr").get(1);
+                        String nowRateWin = nowtRateTr.getElementsByTag("td").get(0).html();
+                        String nowRateDeuce = nowtRateTr.getElementsByTag("td").get(1).html();
+                        String nowRateLose = nowtRateTr.getElementsByTag("td").get(2).html();
+                        //返还率
+                        String firstReturnRate =  tr.child(4).getElementsByTag("td").get(1).html();
+                        String nowReturnRate =  tr.child(4).getElementsByTag("td").get(2).html();
+                        //及时凯利
+                        Element firstKellyTr =  tr.child(5).getElementsByTag("tr").get(0);
+                        String firstKellyWin = firstKellyTr.getElementsByTag("td").get(0).html();
+                        String firstKellyDeuce = firstKellyTr.getElementsByTag("td").get(1).html();
+                        String firstKellyLose = firstKellyTr.getElementsByTag("td").get(2).html();
+                        Element nowtKellyTr =  tr.child(5).getElementsByTag("tr").get(1);
+                        String nowKellyWin = nowtKellyTr.getElementsByTag("td").get(0).html();
+                        String nowKellyDeuce = nowtKellyTr.getElementsByTag("td").get(1).html();
+                        String nowKellyLose = nowtKellyTr.getElementsByTag("td").get(2).html();
+                        OddsModel oddsModel = new OddsModel();
+                        oddsModel.setOddsName(oddsName);
+                        oddsModel.setFirstOddsWin(firstOddsWin);
+                        oddsModel.setFirstOddsDeuce(firstOddsDeuce);
+                        oddsModel.setFirstOddsLose(firstOddsLose);
+                        oddsModel.setNowOddsWin(nowOddsWin);
+                        oddsModel.setNowOddsDeuce(nowOddsDeuce);
+                        oddsModel.setNowOddsLose(nowOddsLose);
+                        oddsModel.setFirstRateWin(firstRateWin);
+                        oddsModel.setFirstRateDeuce(firstRateDeuce);
+                        oddsModel.setFirstRateLose(firstRateLose);
+                        oddsModel.setNowRateWin(nowRateWin);
+                        oddsModel.setNowRateDeuce(nowRateDeuce);
+                        oddsModel.setNowRateLose(nowRateLose);
+                        oddsModel.setFirstReturnRate(firstReturnRate);
+                        oddsModel.setNowReturnRate(nowReturnRate);
+                        oddsModel.setFirstKellyWin(firstKellyWin);
+                        oddsModel.setFirstKellyDeuce(firstKellyDeuce);
+                        oddsModel.setFirstKellyLose(firstKellyLose);
+                        oddsModel.setNowKellyWin(nowKellyWin);
+                        oddsModel.setNowKellyDeuce(nowKellyDeuce);
+                        oddsModel.setNowKellyLose(nowKellyLose);
+                        oddsModels.add(oddsModel);
+                    }catch (Exception e){
+                        logger.info("getMatchOddsById For - log : minor error : " + e);
+                    }
+                }
+                return oddsModels;
+            }else{
+                return oddsModels;
+            }
+        }catch (Exception e){
+            return new ArrayList<>();
         }
     }
 }

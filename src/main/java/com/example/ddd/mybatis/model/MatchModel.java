@@ -67,6 +67,8 @@ public class MatchModel {
     private Integer awayWin;
     @Column(name = "deuce")
     private Integer deuce;
+    @Column(name = "oddsUrl")
+    private String oddsUrl;
     @Column(name = "updateTime")
     private String updateTime;
     @Column(name = "createTime")
@@ -556,6 +558,24 @@ public class MatchModel {
      */
     public void setDeuce(Integer deuce) {
         this.deuce = deuce;
+    }
+
+    /**
+     * Getter for property 'oddsUrl'.
+     *
+     * @return Value for property 'oddsUrl'.
+     */
+    public String getOddsUrl() {
+        return oddsUrl;
+    }
+
+    /**
+     * Setter for property 'oddsUrl'.
+     *
+     * @param oddsUrl Value to set for property 'oddsUrl'.
+     */
+    public void setOddsUrl(String oddsUrl) {
+        this.oddsUrl = oddsUrl;
     }
 
     /**

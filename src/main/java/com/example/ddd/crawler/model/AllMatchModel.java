@@ -40,6 +40,7 @@ public class AllMatchModel extends Model {
     private Integer homeWin;
     private Integer awayWin;
     private Integer deuce;
+    private String oddsUrl;
     private String updateTime;
     private String createTime;
     private List<AllLiveModel> liveList;
@@ -546,6 +547,24 @@ public class AllMatchModel extends Model {
      */
     public void setDeuce(Integer deuce) {
         this.deuce = deuce;
+    }
+
+    /**
+     * Getter for property 'oddsUrl'.
+     *
+     * @return Value for property 'oddsUrl'.
+     */
+    public String getOddsUrl() {
+        return oddsUrl;
+    }
+
+    /**
+     * Setter for property 'oddsUrl'.
+     *
+     * @param oddsUrl Value to set for property 'oddsUrl'.
+     */
+    public void setOddsUrl(String oddsUrl) {
+        this.oddsUrl = oddsUrl;
     }
 
     /**

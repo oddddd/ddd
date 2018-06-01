@@ -28,6 +28,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -488,21 +489,44 @@ public class CrawlerController extends Controller{
     }
 
     /**
-     * 获取直播比赛内容
+     * 获取盘口页面地址
      * @return
      */
-    @RequestMapping(value = "/crawlerTitan007",method = RequestMethod.GET)
-    public String crawlerTitan007(String url){
+    @RequestMapping(value = "/crawler500",method = RequestMethod.GET)
+    public String crawler500(String url){
         try{
             OkHttp okHttp = new OkHttp();
-            String html = okHttp.getStringByUrl(url);
+            byte[] b = okHttp.getStringByUrlTwo(url);
+            String html = new String(b, "GB2312");
             Document doc = Jsoup.parse(html);
+            Element table_live = doc.getElementById("table_match");
+            for(Element tr : table_live.getElementsByTag("tr")){
+                try{
+                    AllMatchModel match = new AllMatchModel();
+                    String kickoffTime = tr.child(3).html();
+                    kickoffTime = kickoffTime.replace("&nbsp;"," ");
+                    Calendar now = Calendar.getInstance();
+                    kickoffTime = now.get(Calendar.YEAR) + "-" + kickoffTime + ":00";
+                    String homeName = tr.child(5).getElementsByTag("a").get(0).html();
+                    String awayName = tr.child(7).getElementsByTag("a").get(0).html();
+                    String oddsUrl = tr.child(13).getElementsByTag("a").get(2).attr("href");
+                    oddsUrl = oddsUrl.replace("//","http://");
+                    match.setKickoffTime(kickoffTime);
+                    match.setHomeName(homeName);
+                    match.setAwayName(awayName);
+                    Integer id = crawlerFacade.selectMatchIdByHomeNameAwayNameKickoffTime(match.getHomeName(), match.getAwayName(), match.getKickoffTime());
+                    if(id != null){
+                        matchService.updateOddsUrlById(id,oddsUrl);
+                    }
+                }catch (Exception e){
+                    logger.info("crawler500 For - log : minor error : " + e);
+                }
+            }
             return "ok";
         }catch (Exception e){
             return "error";
         }
     }
-
 
     /**
      * 简单洗文

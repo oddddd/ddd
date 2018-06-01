@@ -39,8 +39,18 @@ public class MatchImpl implements MatchService{
     }
 
     @Override
+    public MatchModel selectMatchById(Integer id) {
+        return matchMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public Integer updateMatchPointByMatchId(String matchId, Integer homePoint, Integer awayPoint) {
         return matchMapper.updateMatchPointByMatchId(matchId,homePoint,awayPoint);
+    }
+
+    @Override
+    public Integer updateOddsUrlById(Integer id, String oddsUrl) {
+        return matchMapper.updateOddsUrlById(id,oddsUrl);
     }
 
     @Override

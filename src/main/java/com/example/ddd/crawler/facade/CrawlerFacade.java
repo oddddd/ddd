@@ -2,6 +2,7 @@ package com.example.ddd.crawler.facade;
 
 import com.example.ddd.crawler.model.AllMatchModel;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface CrawlerFacade {
@@ -42,4 +43,12 @@ public interface CrawlerFacade {
      * @return
      */
     void addLiveMatchList(List<AllMatchModel> list);
+
+    /**
+     * 获取某个比赛赔率
+     * @param id
+     * @return
+     * @throws IOException
+     */
+    Object getMatchOddsById(Integer id) throws IOException;
 }

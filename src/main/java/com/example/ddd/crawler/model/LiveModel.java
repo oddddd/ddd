@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @desc
  * @date Created in 下午4:46 2018/5/29
  */
-public class LiveModel extends Model  implements Serializable {
+public class LiveModel extends Model implements Serializable {
     private String matchId;
     private String content;
     private String time;
