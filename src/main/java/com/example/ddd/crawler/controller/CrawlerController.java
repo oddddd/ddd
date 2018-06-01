@@ -488,6 +488,23 @@ public class CrawlerController extends Controller{
     }
 
     /**
+     * 获取直播比赛内容
+     * @return
+     */
+    @RequestMapping(value = "/crawlerTitan007",method = RequestMethod.GET)
+    public String crawlerTitan007(String url){
+        try{
+            OkHttp okHttp = new OkHttp();
+            String html = okHttp.getStringByUrl(url);
+            Document doc = Jsoup.parse(html);
+            return "ok";
+        }catch (Exception e){
+            return "error";
+        }
+    }
+
+
+    /**
      * 简单洗文
      * @param text
      * @return

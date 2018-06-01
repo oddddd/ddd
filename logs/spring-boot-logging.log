@@ -495,3 +495,7 @@
 2018/05/31-10:49 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring FrameworkServlet 'dispatcherServlet'
 2018/05/31-10:49 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- FrameworkServlet 'dispatcherServlet': initialization started
 2018/05/31-10:49 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- FrameworkServlet 'dispatcherServlet': initialization completed in 14 ms
+2018/05/31-18:08 [Thread-17] INFO  org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext- Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7e19ebf0: startup date [Thu May 31 10:49:11 CST 2018]; root of context hierarchy
+2018/05/31-18:08 [Thread-17] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter- Unregistering JMX-exposed beans on shutdown
+2018/05/31-18:08 [Thread-17] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter- Unregistering JMX-exposed beans
+2018/05/31-18:08 [Thread-17] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-1} closed
